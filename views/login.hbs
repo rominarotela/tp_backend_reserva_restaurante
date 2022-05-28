@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Ingrese sus datos: </h1>
+    </div>
+</div>
+<div class="container" style="margin: auto;">
+    <form id="login" method="post" action="/home" style="width: 20rem; margin: auto; padding: 50px">
+        <label for="cedula">
+            <input name="cedula" id="cedula" placeholder="Cédula" style="margin: 10px;">
+        </label>
+        <br>
+        <label for="nombre">
+            <input name="nombre" id="nombre" placeholder="Nombre" style="margin: 10px;">
+        </label>
+        <br>
+        <label for="apellido">
+            <input name="apellido" id="apellido" placeholder="Apellido" style="margin: 10px;">
+        </label>
+        <br>
+        <input type="submit" value="Login" style="margin: 15px;">
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    const formLogin = document.querySelector('#login')
+    const formData = new FormData(formLogin)
+    //console.log('formLogin', formLogin.getAttributeNames())
+    //console.log('formData', formData.values())
+
+    formLogin.addEventListener('submit', events => {
+        let cedula = document.querySelector('#cedula').value
+        let nombre = document.querySelector('#nombre').value
+        let apellido = document.querySelector('#apellido').value
+
+        console.log('nombre', nombre);
+        console.log('cedula', cedula);
+        console.log('apellido', apellido);
+
+        let data = {
+            cedula: document.querySelector('#cedula').value,
+            nombre: document.querySelector('#nombre').value,
+            apellido: document.querySelector('#apellido').value,
+        };
+        console.log("data", data )
+
+        // events.preventDefault()
+        // fetch('/api/cliente/', {
+        //     method: 'POST',
+        //     body: data
+        // })
+        // .then(res => res.json())
+        // .then(data => console.log(data))
+        let url = '/api/cliente';
+
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+
+    })
+</script>

@@ -1,0 +1,28 @@
+.table {
+    color: #00818A;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #e9ecef;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+.button_mesa {
+    cursor: pointer;
+    float: left;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: #00818A;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 600;
+    width: auto;
+    margin: 25px;
+}

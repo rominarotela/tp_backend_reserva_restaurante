@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Seleccione el Resaurante: </h1>
+    </div>
+</div>
+
+<form id="elegir_restaurante" method="post" action="/home">
+    <div class="row container" style="width: 90%; margin: auto;">
+
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    const formLogin = document.querySelector('#elegir_restaurante')
+    const formData = new FormData(formLogin)
+
+
+    const myHeaders = new Headers();
+    myHeaders.append('autorization', `Bearer ${localStorage.token}`)
+
+    fetch('/api/restaurante', {
+        method: 'GET',
+        headers: myHeaders
+    })
+        .then(res => res.json())
+        .then(data => {
+            data.map(restaurante => {
+                // const list_mesas = data
+                // let text = document.createTextNode(mesa.nombre_mesa)
+                let hbs = '';
+                console.log(data)
+                data.forEach(elemento => {
+                    console.log("elemento", elemento)
+                })
+                data.forEach(elemento => {
+                    let htmlSegment = `
+                        <div class="card col-12 col-sm-12 col-md-6 col-lg-6 " style="width: 16rem; margin: 30px; padding-right: 0; padding-left: 0;">
+                            <img src="/images/restaurante.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title card_rest">${elemento.nombre}</h5>
+                                <p class="card-text"> Del restaurante N°: ${elemento.direccion}</p>
+                                <a href='/${elemento.nombre}' class="btn btn-primary" style="background-color: #00818A; border: none">Elegir</a>
+                            </div>
+                        </div>
+                    `
+                    hbs += htmlSegment;
+                });
+
+                let container = document.querySelector('.container');
+                container.innerHTML = hbs;
+            })
+        })
+    formLogin.addEventListener('click', events => {
+        console.log("hizo clic")
+        console.log("id", document.querySelector('.card_rest').id)
+        // let cedula = document.querySelector('#cedula').value
+        // let nombre = document.querySelector('#nombre').value
+        // let apellido = document.querySelector('#apellido').value
+
+        // console.log('nombre', nombre);
+        // console.log('cedula', cedula);
+        // console.log('apellido', apellido);
+        //
+        // let data = {
+        //     cedula: document.querySelector('#cedula').value,
+        //     nombre: document.querySelector('#nombre').value,
+        //     apellido: document.querySelector('#apellido').value,
+        // };
+        // console.log("data", data )
+        //
+        // // events.preventDefault()
+        // // fetch('/api/cliente/', {
+        // //     method: 'POST',
+        // //     body: data
+        // // })
+        // // .then(res => res.json())
+        // // .then(data => console.log(data))
+        // let url = '/api/cliente';
+        //
+        // fetch(url, {
+        //     method: 'POST', // or 'PUT'
+        //     body: JSON.stringify(data), // data can be `string` or {object}!
+        //     headers:{
+        //         'Content-Type': 'application/json'
+        //     }
+        // }).then(res => res.json())
+        //         .catch(error => console.error('Error:', error))
+        //         .then(response => console.log('Success:', response));
+
+    })
+</script>

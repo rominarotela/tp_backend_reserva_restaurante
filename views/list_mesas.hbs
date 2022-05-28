@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Seleccione una mesa: </h1>
+    </div>
+</div>
+
+<div class="row container" style="width: 90%; margin: auto;">
+
+</div>
+
+
+<script type="text/javascript">
+    let mesaList = document.createElement('ul')
+    const myHeaders = new Headers();
+    myHeaders.append('autorization', `Bearer ${localStorage.token}`)
+
+    fetch('/api/mesa', {
+        method: 'GET',
+        headers: myHeaders
+    })
+            .then(res => res.json())
+            .then(data => {
+                data.map(mesa => {
+                    // const list_mesas = data
+                    // let text = document.createTextNode(mesa.nombre_mesa)
+                    let hbs = '';
+                    console.log(data)
+                    data.forEach(elemento => {
+                        console.log("elemento", elemento)
+                    })
+                    data.forEach(elemento => {
+
+                        // let htmlSegment = `
+                        //                <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding: 0;">
+                        //                     <p class="" style="width: 100%; background-color: blue; padding: 15px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; display: flex; justify-content: center">
+                        //                         <strong>${elemento.nombre_mesa} ${elemento.restaurante}</strong>
+                        //                     </p>
+                        //                </div>
+                        //             `;
+                        let htmlSegment = `
+                            <div class="button_mesa">
+                                <span>${elemento.nombre_mesa}</span>
+                            </div>
+                        `
+                        hbs += htmlSegment;
+                    });
+
+                    let container = document.querySelector('.container');
+                    container.innerHTML = hbs;
+
+                    // let elem = document.createElement('li')
+                    // elem.appendChild(text)
+                    // mesaList.appendChild(elem)
+                    // return (list_mesas)
+                })
+                // document.body.appendChild(mesaList)
+            })
+</script>
