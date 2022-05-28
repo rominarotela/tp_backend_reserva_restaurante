@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Seleccione el Resaurante: </h1>
+    </div>
+</div>
+
+<div class="row container" style="width: 90%; margin: auto;">
+</div>
+
+
+
+<script type="text/javascript">
+
+    const myHeaders = new Headers();
+    myHeaders.append('autorization', `Bearer ${localStorage.token}`)
+
+    fetch("/api/restaurante/" + 2 , {
+        method: 'GET',
+        headers: myHeaders
+    })
+
+</script>
