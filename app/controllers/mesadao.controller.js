@@ -43,9 +43,9 @@ exports.findOne = (req, res) => {
 
 exports.findAll = (req, res) => {
     const nombre = req.query.nombre;
-    var condition = nombre ? { nombre: { [Op.iLike]: `%${nombre}%` } } : null;
+    var condition = nombre ? {nombre: {[Op.iLike]: `%${nombre}%`}} : null;
     console.log("----------->  log: Preparando lista de mesas.")
-    Mesas.findAll({ where: condition })
+    Mesas.findAll({where: condition})
         .then(data => {
             console.log("----------->  log: Busqueda exitosa.")
             res.send(data);
@@ -60,16 +60,15 @@ exports.findAll = (req, res) => {
 
 exports.updateOne = async (req, res) => {
     try {
-        let { id } = req.params;
+        let {id} = req.params;
         console.log("----------->  log: Actualizando mesa con id: ", id)
         await Mesas.update(req.body, {
-            where: { id: id }
+            where: {id: id}
         });
         return res.status(200).json({
             message: "----------->  log: Mesa actualizada con éxito."
         });
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
         return res.status(500).json({
             message: "----------->  log: Error al intentar actualizar mesa."
@@ -77,12 +76,28 @@ exports.updateOne = async (req, res) => {
     }
 }
 
-exports.deleteOne = async (req, res) =>  {
-    const { id } = req.params;
+exports.deleteOne = async (req, res) => {
+    const {id} = req.params;
     console.log("----------->  log: Borrando mesa con id: ", id)
-    await Mesas.destroy({ where: { id: id }});
+    await Mesas.destroy({where: {id: id}});
 
     return res.status(200).json({
         message: "----------->  Mesa eliminada.",
+    });
+}
+
+exports.findMesaByRestaurante = async (req, res) => {
+    let {restaurante} = req.params;
+    console.log("----------->  log: Listando mesas del restaurante con id: ", restaurante);
+    await Mesas.findAll({ where: {restaurante: restaurante}})
+    .then(data => {
+        console.log("----------->  log: Las Mesas fueron listadas con éxito.")
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "----------->  log: Error al intentar listar las mesas."
+        });
     });
 }
