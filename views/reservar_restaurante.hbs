@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-12" style="display: flex; justify-content: center">
+        <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Realice una reserva: </h1>
+    </div>
+</div>
+<div class="container" style="margin: auto;">
+    <form id="reserva" method="post" action="/reservar_restaurante" style="width: 20rem; margin: auto; padding: 50px">
+        <label for="nombre">
+            Nombre de restaurante
+        </label>
+        <br>
+        <input type="text" id="nombre" name="nombre" value="{{nombre}}" placeholder="Nombre">
+        <br>
+        <label for="nombre">
+            Direccion de restaurante
+        </label>
+        <br>
+        <input type="text" id="direccion" name="direccion" value="{{direccion}}" placeholder="Direccion">
+        <br>
+        <button type="submit" name="btnSubmit">Enviar</button>
+    </form>
+</div>
+
+<br>
+<div>
+    <span>Datos de la reserva realizada: </span>
+    <ul>
+        <li>
+            <span>Restaurante: </span>{{nombre}}
+        </li>
+        <li>
+            <span>Direccion: </span>{{direccion}}
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    const formReserva = document.querySelector('#reserva')
+    const formData = new FormData(formReserva)
+    //console.log('formLogin', formLogin.getAttributeNames())
+    //console.log('formData', formData.values())
+
+    formReserva.addEventListener('submit', events => {
+        let nombre = document.querySelector('#nombre').value
+        let direccion = document.querySelector('#direccion').value
+
+        console.log('nombre', nombre);
+        console.log('direccion', direccion);
+
+        let data = {
+            nombre: document.querySelector('#nombre').value,
+            direccion: document.querySelector('#direccion').value,
+        };
+        console.log("data", data)
+
+        // events.preventDefault()
+        // fetch('/api/cliente/', {
+        //     method: 'POST',
+        //     body: data
+        // })
+        // .then(res => res.json())
+        // .then(data => console.log(data))
+        let url = '/api/restaurante';
+
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+
+    })
+</script>

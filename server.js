@@ -50,6 +50,18 @@ app.post('/home', (req, res) => {
     console.log("home")
 })
 
+app.get('/reservar_restaurante', (req, res, next) => {
+    // res.render('reservar_restaurante', {nombre: "Romina"})
+    console.log(req.body)
+    res.render('reservar_restaurante', {})
+
+})
+
+app.post('/reservar_restaurante', (req, res, next) => {
+    console.log(req.body)
+    res.render('reservar_restaurante', {nombre: req.body.nombre, direccion: req.body.direccion})
+})
+
 require("./app/routes/cliente.routes")(app);
 require("./app/routes/restaurante.routes")(app);
 require("./app/routes/mesa.routes")(app);
