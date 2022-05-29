@@ -4,55 +4,72 @@
     </div>
 </div>
 
-<div class="row container" style="width: 90%; margin: auto;">
 
+<div class="row container" style="width: 90%; margin: auto;">
+    {{#each mesas}}
+        <a class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 button_mesa" style="padding: 25px;">
+            <p class=""
+               style="border-radius: 0.5rem; border:2px solid #00818A; font-weight: 600; cursor: pointer; font-size: 1.25rem; padding: 0.5rem 1rem 0.5rem 1rem;width: 100%; color:#00818A; background-color: white; display: flex; justify-content: center; margin: 10px">
+                <span>{{nombre_mesa}}</span>
+            </p>
+        </a>
+<!--        <ul>-->
+<!--            <li>{{nombre_mesa}}</li>-->
+<!--            <li>{{restaurante}}</li>-->
+<!--            <li>{{posicion_x}}</li>-->
+<!--            <li>{{posicion_y}}</li>-->
+<!--            <li>{{nro_piso}}</li>-->
+<!--            <li>{{capacidad}}</li>-->
+<!--            <li>{{id}}</li>-->
+<!--        </ul>-->
+    {{/each}}
 </div>
 
 
 <script type="text/javascript">
-    let mesaList = document.createElement('ul')
-    const myHeaders = new Headers();
-    myHeaders.append('autorization', `Bearer ${localStorage.token}`)
-
-    fetch('/api/mesa', {
-        method: 'GET',
-        headers: myHeaders
-    })
-            .then(res => res.json())
-            .then(data => {
-                data.map(mesa => {
-                    // const list_mesas = data
-                    // let text = document.createTextNode(mesa.nombre_mesa)
-                    let hbs = '';
-                    console.log(data)
-                    data.forEach(elemento => {
-                        console.log("elemento", elemento)
-                    })
-                    data.forEach(elemento => {
-
-                        // let htmlSegment = `
-                        //                <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding: 0;">
-                        //                     <p class="" style="width: 100%; background-color: blue; padding: 15px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; display: flex; justify-content: center">
-                        //                         <strong>${elemento.nombre_mesa} ${elemento.restaurante}</strong>
-                        //                     </p>
-                        //                </div>
-                        //             `;
-                        let htmlSegment = `
-                            <div class="button_mesa">
-                                <span>${elemento.nombre_mesa}</span>
-                            </div>
-                        `
-                        hbs += htmlSegment;
-                    });
-
-                    let container = document.querySelector('.container');
-                    container.innerHTML = hbs;
-
-                    // let elem = document.createElement('li')
-                    // elem.appendChild(text)
-                    // mesaList.appendChild(elem)
-                    // return (list_mesas)
-                })
-                // document.body.appendChild(mesaList)
-            })
+    // let mesaList = document.createElement('ul')
+    // const myHeaders = new Headers();
+    // myHeaders.append('autorization', `Bearer ${localStorage.token}`)
+    //
+    // fetch('/api/mesa', {
+    //     method: 'GET',
+    //     headers: myHeaders
+    // })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             data.map(mesa => {
+    //                 // const list_mesas = data
+    //                 // let text = document.createTextNode(mesa.nombre_mesa)
+    //                 let hbs = '';
+    //                 console.log(data)
+    //                 data.forEach(elemento => {
+    //                     console.log("elemento", elemento)
+    //                 })
+    //                 data.forEach(elemento => {
+    //
+    //                     // let htmlSegment = `
+    //                     //                <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding: 0;">
+    //                     //                     <p class="" style="width: 100%; background-color: blue; padding: 15px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; display: flex; justify-content: center">
+    //                     //                         <strong>${elemento.nombre_mesa} ${elemento.restaurante}</strong>
+    //                     //                     </p>
+    //                     //                </div>
+    //                     //             `;
+    //                     let htmlSegment = `
+    //                         <div class="button_mesa">
+    //                             <span>${elemento.nombre_mesa}</span>
+    //                         </div>
+    //                     `
+    //                     hbs += htmlSegment;
+    //                 });
+    //
+    //                 let container = document.querySelector('.container');
+    //                 container.innerHTML = hbs;
+    //
+    //                 // let elem = document.createElement('li')
+    //                 // elem.appendChild(text)
+    //                 // mesaList.appendChild(elem)
+    //                 // return (list_mesas)
+    //             })
+    //             // document.body.appendChild(mesaList)
+    //         })
 </script>

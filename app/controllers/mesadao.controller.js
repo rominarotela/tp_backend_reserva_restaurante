@@ -33,6 +33,8 @@ exports.findOne = (req, res) => {
         .then(data => {
             console.log("----------->  log: Busqueda exitosa.")
             res.send(data);
+            res.send({ data: 'json' })
+
         })
         .catch(err => {
             res.status(500).send({
@@ -92,7 +94,23 @@ exports.findMesaByRestaurante = async (req, res) => {
     await Mesas.findAll({ where: {restaurante: restaurante}})
     .then(data => {
         console.log("----------->  log: Las Mesas fueron listadas con éxito.")
-        res.send(data);
+        data = JSON.stringify(data);
+        data = JSON.parse(data);
+        let mesas = [];
+        data.forEach(element => {
+            mesas.push({
+                nombre_mesa:  element.nombre_mesa,
+                restaurante: element.restaurante,
+                posicion_x: element.posicion_x,
+                posicion_y: element.posicion_y,
+                nro_piso: element.nro_piso,
+                capacidad: element.capacidad,
+                id: element.id
+            });
+        });
+        res.render("list_mesas", {mesas: mesas, tam: mesas.length})
+        console.log("----------->  log: Las mesas son:", mesas)
+        // res.send(data);
     })
     .catch(err => {
         res.status(500).send({

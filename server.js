@@ -39,10 +39,6 @@ app.get('/login', (req, res) => {
 
 // seleccion
 app.get('/restaurantes', (req, res, next) => {
-    console.log("res.body", res.body)
-    console.log("req.body", req.body)
-    console.log("req.body", req.data)
-    console.log("req.body", res.data)
     res.render('restaurantes')
 })
 
@@ -69,7 +65,13 @@ app.post('/restaurantes', (req, res, next) => {
 })
 
 app.get('/list_mesas', (req, res) => {
-    res.render('list_mesas')
+    console.log("/list_mesas", req.data)
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capidad: req.body.capidad})
+})
+
+app.post('/list_mesas', (req, res) => {
+    console.log("/list_mesas", req.data)
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capidad: req.body.capidad})
 })
 
 app.post('/home', (req, res) => {
