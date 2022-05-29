@@ -48,11 +48,20 @@ exports.findOne = (req, res) => {
 
 exports.findOneCedula = (req, res) => {
     const cedula = req.params.cedula;
+    const restaurante = req.params.restaurante;
+    const mesa = req.params.mesa;
+    console.log("findOneCedula - restaurante", restaurante)
     console.log("----------->  log: Buscando cliente con cédula: ", cedula)
     Clientes.findAll({ where: { cedula: cedula }})
         .then(data => {
             console.log("----------->  log: Busqueda exitosa.")
-            res.send(data);
+            // res.send(data);
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+            console.log(data)
+
+            res.render("resultado", {data: data[0], mesa:mesa, restaurante:restaurante, cliente:data[0].id})
+            console.log("----------->  log: El cliente encontrado:", data[0])
         })
         .catch(err => {
             res.status(500).send({

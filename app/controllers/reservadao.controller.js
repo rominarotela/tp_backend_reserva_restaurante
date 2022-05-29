@@ -57,3 +57,28 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.createForm = (req, res) => {
+
+    // crea una reserva
+    const reserva = {
+        restaurante: req.params.restaurante,
+        mesa: req.params.mesa,
+        fecha: Date.now(),
+        cliente: req.params.cliente,
+        cantidad_mesa: req.body.cantidad_mesa,
+    };
+    console.log("----------->  log: Creando una nueva reserva...", reserva)
+    // Guardamos a la base de datos
+    Reservas.create(reserva)
+        .then(data => {
+            console.log("----------->  log: Nueva reserva creada con éxito.")
+            res.render("confirmado");
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "----------->  log: Ha ocurrido un error al crear una reserva."
+            });
+        });
+};
+

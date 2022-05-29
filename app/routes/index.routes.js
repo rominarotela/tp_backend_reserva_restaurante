@@ -9,5 +9,6 @@ module.exports = app => {
     router.get("/:restaurante", mesa.findMesaByRestaurante);
     // router.post("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
     router.get("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
+    router.post("/:restaurante/:mesa/:cliente/create", reserva.createForm);
     app.use('/index', router);
 };
