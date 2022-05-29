@@ -46,6 +46,21 @@ exports.findOne = (req, res) => {
         });
 };
 
+exports.findOneCedula = (req, res) => {
+    const cedula = req.params.cedula;
+    console.log("----------->  log: Buscando cliente con cédula: ", cedula)
+    Clientes.findAll({ where: { cedula: cedula }})
+        .then(data => {
+            console.log("----------->  log: Busqueda exitosa.")
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "----------->  Error al obtener cliente con cédula=" + cedula
+            });
+        });
+};
+
 exports.findAll = (req, res) => {
     const nombre = req.query.nombre;
     var condition = nombre ? { cliente: { [Op.iLike]: `%${nombre}%` } } : null;

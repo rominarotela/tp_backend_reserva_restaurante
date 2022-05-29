@@ -74,6 +74,22 @@ app.post('/list_mesas', (req, res) => {
     res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capidad: req.body.capidad})
 })
 
+// Post - Busca si el cliente existe y si no crea el cliente
+app.post('/index/:restaurante/:mesa/busqueda', (req, res) => {
+    console.log("post", req.params.restaurante)
+    console.log("post", req.params.mesa)
+    console.log("post", req.body.cedula)
+    // res.send({cedula: req.body.cedula, restaurante: req.body.restaurante, mesa: req.body.mesa})
+    // res.render("resultado", {cedula: req.body.cedula, restaurante: req.params.restaurante, mesa: req.params.mesa})
+    console.log("/index/" + req.params.restaurante + "/" + req.params.mesa + "/" + req.body.cedula)
+    res.redirect("/index/" + req.params.restaurante + "/" + req.params.mesa + "/" + req.body.cedula)
+})
+// Get - Lista las mesas del restaurante seleccionado
+app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
+    console.log('entro al get de busqueda')
+    res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+})
+
 app.post('/home', (req, res) => {
     res.render('home')
     console.log("home")
