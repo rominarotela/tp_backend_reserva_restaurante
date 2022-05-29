@@ -50,7 +50,7 @@ exports.findOneCedula = (req, res) => {
     const cedula = req.params.cedula;
     const restaurante = req.params.restaurante;
     const mesa = req.params.mesa;
-    console.log("findOneCedula - restaurante", restaurante)
+    console.log("----------->  log: Busqueda de cliente para reserva en restaurante", restaurante)
     console.log("----------->  log: Buscando cliente con cédula: ", cedula)
     Clientes.findAll({ where: { cedula: cedula }})
         .then(data => {

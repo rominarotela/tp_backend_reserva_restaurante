@@ -44,12 +44,10 @@ app.get('/restaurantes', (req, res, next) => {
 
 
 app.get('/list_restaurantes', (req, res, next) => {
-    console.log("req.body", req.data)
     res.render('list_restaurantes')
 })
 
 app.post('/list_restaurantes', (req, res, next) => {
-    console.log("req.body", req.data)
     res.render('list_restaurantes', {nombre: req.body.nombre, direccion: req.body.direccion})
 })
 
@@ -76,17 +74,16 @@ app.post('/list_mesas', (req, res) => {
 
 // Post - Busca si el cliente existe y si no crea el cliente
 app.post('/index/:restaurante/:mesa/busqueda', (req, res) => {
-    console.log("post", req.params.restaurante)
-    console.log("post", req.params.mesa)
-    console.log("post", req.body.cedula)
+    // console.log("post", req.params.restaurante)
+    // console.log("post", req.params.mesa)
+    // console.log("post", req.body.cedula)
     // res.send({cedula: req.body.cedula, restaurante: req.body.restaurante, mesa: req.body.mesa})
     // res.render("resultado", {cedula: req.body.cedula, restaurante: req.params.restaurante, mesa: req.params.mesa})
-    console.log("/index/" + req.params.restaurante + "/" + req.params.mesa + "/" + req.body.cedula)
     res.redirect("/index/" + req.params.restaurante + "/" + req.params.mesa + "/" + req.body.cedula)
 })
 // Get - Lista las mesas del restaurante seleccionado
 app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
-    console.log('entro al get de busqueda')
+    console.log('----------->  log: Preparando busqueda de cliente.')
     res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
 })
 
