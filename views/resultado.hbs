@@ -21,24 +21,27 @@
 
 
 <div class="container" style="margin: auto;">
-    <form id="reserva" method="post" action="/index/{{restaurante}}/{{mesa}}/{{cliente}}/create" style="width: 20rem; margin: auto; padding: 50px; background-color: #e9ecef; border-radius: 0.5rem;">
-        <div>
-            <strong> Datos de la reserva: </strong>
+    <form id="reserva" method="post" action="/index/{{restaurante}}/{{mesa}}/{{cliente}}/create"
+          style="width: 20rem; margin: auto; padding: 50px; background-color: #e9ecef; border-radius: 0.5rem;">
+        <div style="text-align: center;">
+            <strong> Datos de la reserva </strong>
             <br>
-            <span style="color: #00818A">Cedula del cliente: </span>
+            <strong style="color: #00818A">Cedula del cliente: </strong>
             <span>{{data.cedula}}</span>
             <br>
-            <span style="color: #00818A">Restaurante </span>
-            <span>{{restaurante}}</span>
+            <strong style="color: #00818A">Restaurante: </strong>
+            <span style="text-align: right">{{restaurante}}</span>
             <br>
-            <span style="color: #00818A">Mesa: </span>
+            <strong style="color: #00818A">Mesa: </strong>
             <span>{{mesa}}</span>
         </div>
-        <button type="submit" name="btnSubmit">Confirmar</button>
+        <div style="display: flex; justify-content: center">
+            <button type="submit"
+                    style=" background: #00818A; color: white; border: 2px solid #00818A; border-radius: 0.2rem; margin-top: 30px;"
+                    name="btnSubmit">Confirmar
+            </button>
+        </div>
         <br>
         <br>
     </form>
-    <h1 style="color: #00818A; margin-top: 50px; margin-bottom: 30px;"> Esperando cliente para reservar: </h1>
-    <span>Restaurante: </span><span id="restaurante">{{restaurante}}</span><br>
-    <span>Mesa: </span><span id="mesa">{{mesa}}</span><br>
 </div>
