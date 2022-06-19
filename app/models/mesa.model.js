@@ -41,4 +41,4 @@ module.exports = (sequelize, Sequelize) => {
     return Mesa;
 };
 
-
+// Se modificará el modelo de la mesa para verificar si una mesa esta ocupada o no.
