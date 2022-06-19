@@ -32,6 +32,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
         },
 
+        ocupado: {
+            type : Sequelize.BOOLEAN,
+        },
+
         id: {
             type: Sequelize.BIGINT,
             primaryKey: true,

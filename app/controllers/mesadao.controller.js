@@ -10,6 +10,7 @@ exports.create = (req, res) => {
         posicion_y: req.body.posicion_y,
         nro_piso: req.body.nro_piso,
         capacidad: req.body.capacidad,
+        ocupado: req.body.ocupado,
     };
     console.log("----------->  log: Creando una nueva mesa...", mesa)
     // Guardamos a la base de datos
