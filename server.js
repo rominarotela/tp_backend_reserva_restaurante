@@ -110,6 +110,7 @@ require("./app/routes/mesa.routes")(app);
 require("./app/routes/reserva.routes")(app);
 require("./app/routes/seleccion_reserva.routes")(app);
 require("./app/routes/index.routes")(app);
+require("./app/routes/categoria.routes")(app);
 
 
 // set port, listen for requests
