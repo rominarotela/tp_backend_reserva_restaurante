@@ -64,12 +64,12 @@ app.post('/restaurantes', (req, res, next) => {
 
 app.get('/list_mesas', (req, res) => {
     console.log("/list_mesas", req.data)
-    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capidad: req.body.capidad})
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad})
 })
 
 app.post('/list_mesas', (req, res) => {
     console.log("/list_mesas", req.data)
-    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capidad: req.body.capidad})
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad})
 })
 
 // Post - Busca si el cliente existe y si no crea el cliente
