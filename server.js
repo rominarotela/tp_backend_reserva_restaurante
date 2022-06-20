@@ -64,12 +64,12 @@ app.post('/restaurantes', (req, res, next) => {
 
 app.get('/list_mesas', (req, res) => {
     console.log("/list_mesas", req.data)
-    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad})
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad, ocupado: req.body.ocupado})
 })
 
 app.post('/list_mesas', (req, res) => {
     console.log("/list_mesas", req.data)
-    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad})
+    res.render('list_mesas', {nombre_mesa: req.body.nombre_mesa, capacidad: req.body.capacidad, ocupado: req.body.ocupado})
 })
 
 // Post - Busca si el cliente existe y si no crea el cliente
@@ -82,9 +82,20 @@ app.post('/index/:restaurante/:mesa/busqueda', (req, res) => {
     res.redirect("/index/" + req.params.restaurante + "/" + req.params.mesa + "/" + req.body.cedula)
 })
 // Get - Lista las mesas del restaurante seleccionado
-app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
-    console.log('----------->  log: Preparando busqueda de cliente.')
-    res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+// reemplazamos busqueda por ocupado/no ocupado
+// app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
+//     console.log('----------->  log: Preparando busqueda de cliente.')
+//     res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+// })
+
+app.get('/index/:restaurante/:mesa/ocupado', (req, res) => {
+    console.log('----------->  log: Verificando mesa ocupada.')
+    res.render('ocupado', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+})
+
+app.get('/index/:restaurante/:mesa/libre', (req, res) => {
+    console.log('----------->  log: Verificando mesa libre.')
+    res.render('libre', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
 })
 
 app.post('/home', (req, res) => {

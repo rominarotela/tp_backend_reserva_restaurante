@@ -106,6 +106,7 @@ exports.findMesaByRestaurante = async (req, res) => {
                 posicion_y: element.posicion_y,
                 nro_piso: element.nro_piso,
                 capacidad: element.capacidad,
+                ocupado: element.ocupado,
                 id: element.id
             });
         });
