@@ -83,20 +83,20 @@ app.post('/index/:restaurante/:mesa/busqueda', (req, res) => {
 })
 // Get - Lista las mesas del restaurante seleccionado
 // reemplazamos busqueda por ocupado/no ocupado
-// app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
-//     console.log('----------->  log: Preparando busqueda de cliente.')
-//     res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+app.get('/index/:restaurante/:mesa/busqueda', (req, res) => {
+    console.log('----------->  log: Preparando busqueda de cliente.')
+    res.render('busqueda', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+})
+
+// app.get('/index/:restaurante/:mesa/ocupado', (req, res) => {
+//     console.log('----------->  log: Verificando mesa ocupada.')
+//     res.render('ocupado', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
 // })
-
-app.get('/index/:restaurante/:mesa/ocupado', (req, res) => {
-    console.log('----------->  log: Verificando mesa ocupada.')
-    res.render('ocupado', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
-})
-
-app.get('/index/:restaurante/:mesa/libre', (req, res) => {
-    console.log('----------->  log: Verificando mesa libre.')
-    res.render('libre', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
-})
+//
+// app.get('/index/:restaurante/:mesa/libre', (req, res) => {
+//     console.log('----------->  log: Verificando mesa libre.')
+//     res.render('libre', {restaurante: req.params.restaurante, mesa: req.params.mesa, cedula: req.body.cedula})
+// })
 
 app.post('/home', (req, res) => {
     res.render('home')
@@ -123,6 +123,7 @@ require("./app/routes/seleccion_reserva.routes")(app);
 require("./app/routes/index.routes")(app);
 require("./app/routes/categoria.routes")(app);
 require("./app/routes/producto.routes")(app);
+require("./app/routes/consumo.routes")(app);
 
 
 // set port, listen for requests
