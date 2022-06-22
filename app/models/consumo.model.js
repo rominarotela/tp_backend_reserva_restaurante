@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
 
         //1 - True: abierto, 0 - False: cerrado
         estado: {
-            type : Sequelize.BOOLEAN,
+            type: Sequelize.BOOLEAN,
         },
 
         fecha_creacion: {
@@ -54,33 +54,52 @@ module.exports = (sequelize, Sequelize) => {
         fecha_cierre: {
             type: Sequelize.DATE
         },
-    });
 
-    const DetalleConsumo = sequelize.define("detalle", {
-        //id de producto
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true
+        id_producto: {
+            type: Sequelize.BIGINT,
+            allowNull: false,
+            foreignKey: true,
+            references: {
+                model: 'Productos',
+                key: 'id'
+            },
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
         },
+
         subtotal: {
             type: Sequelize.INTEGER
         },
+
         cantidad: {
             type: Sequelize.INTEGER
         },
+
     });
 
-    Consumo.hasMany(DetalleConsumo, {
-        foreignKey: 'id'
-    });
-    DetalleConsumo.belongsTo(Consumo);
-
-    // Consumo.hasMany(DetalleConsumo,{ foreignKey: {allowNull: false,name:'id_consumo'}});
-    // DetalleConsumo.belongsTo(Consumo, { foreignKey: {allowNull: false,name:'id_consumo'}});
+    // const DetalleConsumo = sequelize.define("detalle", {
+    //     //id de producto
+    //     id: {
+    //         type: Sequelize.INTEGER,
+    //         primaryKey: true
+    //     },
+    //     subtotal: {
+    //         type: Sequelize.INTEGER
+    //     },
+    //     cantidad: {
+    //         type: Sequelize.INTEGER
+    //     },
+    // });
+    //
+    // Consumo.hasMany(DetalleConsumo, {
+    //     foreignKey: 'id'
+    // });
+    // DetalleConsumo.belongsTo(Consumo);
+    //
+    // // Consumo.hasMany(DetalleConsumo,{ foreignKey: {allowNull: false,name:'id_consumo'}});
+    // // DetalleConsumo.belongsTo(Consumo, { foreignKey: {allowNull: false,name:'id_consumo'}});
     return Consumo;
 };
-
-
 
 
 // export {Consumo};

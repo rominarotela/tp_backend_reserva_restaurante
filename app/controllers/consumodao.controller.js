@@ -7,7 +7,9 @@ exports.create = (req, res) => {
         mesa: req.body.mesa,
         cliente: req.body.cliente,
         estado: req.body.estado,
-        detalle: req.body.detalle,
+        id_producto: req.body.id_producto,
+        subtotal: req.body.subtotal,
+        cantidad: req.body.cantidad,
     };
     consumo.fecha_creacion = new Date()
     console.log("----------->  log: Creando un nuevo consumo...", consumo)
@@ -36,6 +38,48 @@ exports.findOne = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "----------->  Error al obtener consumo con id=" + id
+            });
+        });
+};
+
+exports.findConsumo = (req, res) => {
+    const id = req.params.cliente;
+    console.log("----------->  log: Buscando consumo del cliente con id: ", id)
+    var condition = Consumos ? { cliente: id } : null;
+    Consumos.findAll({ where: condition })
+        .then(data => {
+            console.log("----------->  log: Busqueda exitosa.")
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+            let list_consumo = [];
+            data.forEach(element => {
+                list_consumo.push({
+                    restaurante:  element.restaurante,
+                    mesa: element.mesa,
+                    cliente: element.cliente,
+                    estado: element.estado,
+                    fecha_creacion: element.fecha_creacion,
+                    id_producto: element.id_producto,
+                    subtotal: element.subtotal,
+                    cantidad: element.cantidad,
+                    id: element.id
+                });
+            });
+            if (list_consumo) {
+                list_consumo.push({
+                    restaurante: req.params.restaurante,
+                    mesa: req.params.mesa,
+                    cliente: req.params.cliente,
+                    estado: req.params.estado,
+                });
+                console.log(list_consumo)
+            }
+            // res.send(data);
+            res.render('list_consumo', {consumo: list_consumo[0]});
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "----------->  Error al obtener consumo del cliente con id=" + id
             });
         });
 };

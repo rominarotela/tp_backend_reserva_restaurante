@@ -66,6 +66,23 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.findAllProducts = (req, res) => {
+    const nombre = req.query.nombre;
+    var condition = nombre ? { producto: { [Op.iLike]: `%${nombre}%` } } : null;
+    console.log("----------->  log: Preparando lista de productos.")
+    Productos.findAll({ where: condition })
+        .then(data => {
+            console.log("----------->  log: Busqueda exitosa.")
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "----------->  Ocurrio un error al obtener los productos."
+            });
+        });
+};
+
 exports.updateOne = async (req, res) => {
     try {
         let {id} = req.params;

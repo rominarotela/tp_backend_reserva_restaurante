@@ -12,7 +12,9 @@ module.exports = app => {
     // router.post("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
     router.get("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
     router.post("/:restaurante/:mesa/:cliente/create", reserva.createForm);
-    router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.addConsumoForm);
+    // router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.addConsumoForm);
+    router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.findConsumo);
     router.post("/:mesa/:cliente/list_productos", producto.findAll);
+    // router.post("/:nombre/:precio_venta/addConsumoCliente", detalle.findAll);
     app.use('/index', router);
 };
