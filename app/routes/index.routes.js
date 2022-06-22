@@ -3,6 +3,7 @@ const restaurante = require("../controllers/restaurantedao.controller");
 const mesa = require("../controllers/mesadao.controller");
 const reserva = require("../controllers/reservadao.controller");
 const cliente = require("../controllers/clientedao.controller");
+const consumo = require("../controllers/consumodao.controller");
 module.exports = app => {
     var router = require("express").Router();
     app.use('/reservar_restaurante', router);
@@ -10,5 +11,6 @@ module.exports = app => {
     // router.post("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
     router.get("/:restaurante/:mesa/:cedula", cliente.findOneCedula);
     router.post("/:restaurante/:mesa/:cliente/create", reserva.createForm);
+    router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.addConsumoForm);
     app.use('/index', router);
 };

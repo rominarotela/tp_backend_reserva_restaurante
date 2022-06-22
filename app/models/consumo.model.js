@@ -56,7 +56,7 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
-    const DetalleConsumo = sequelize.define("DetalleConsumo", {
+    const DetalleConsumo = sequelize.define("detalle", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -68,8 +68,15 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         }
     });
-    Consumo.hasMany(DetalleConsumo,{ foreignKey: {allowNull: false,name:'id_consumo'}});
-    DetalleConsumo.belongsTo(Consumo, { foreignKey: {allowNull: false,name:'id_consumo'}});
+
+    Consumo.hasMany(DetalleConsumo, {
+        foreignKey: 'id'
+    });
+    DetalleConsumo.belongsTo(Consumo);
+
+    // Consumo.hasMany(DetalleConsumo,{ foreignKey: {allowNull: false,name:'id_consumo'}});
+    // DetalleConsumo.belongsTo(Consumo, { foreignKey: {allowNull: false,name:'id_consumo'}});
+    return Consumo;
 };
 
 

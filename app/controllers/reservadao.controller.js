@@ -72,7 +72,7 @@ exports.createForm = (req, res) => {
     Reservas.create(reserva)
         .then(data => {
             console.log("----------->  log: Nueva reserva creada con éxito.")
-            res.render("confirmado");
+            res.render("confirmado", {restaurante:reserva.restaurante, mesa:reserva.mesa, cliente:reserva.cliente});
         })
         .catch(err => {
             res.status(500).send({
