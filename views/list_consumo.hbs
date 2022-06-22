@@ -4,33 +4,55 @@
 <!--    </div>-->
 <!--</div>-->
 <div class="container" style="margin: auto;">
-<!--    <form id="busqueda" method="post" action=""-->
-<!--          style="width: 20rem; margin: auto; padding: 50px; background-color: #e9ecef; border-radius: 0.5rem; text-align: center;">-->
-<!--        <div>-->
-<!--            <span>Ingrese cédula del cliente: </span>-->
-<!--            <label for="cedula">-->
-<!--                <input name="cedula" id="cedula" placeholder="Cédula" style="margin: 10px 10px 10px 0;">-->
-<!--            </label>-->
-<!--        </div>-->
-<!--        <button type="submit"-->
-<!--                style=" background: #00818A; color: white; border: 2px solid #00818A; border-radius: 0.2rem;"-->
-<!--                name="btnSubmit">Buscar-->
-<!--        </button>-->
-<!--        <br>-->
-<!--        <br>-->
-<!--    </form>-->
-    <div style="display: flex; justify-content: center;">
-        <div class="row" style="border: 2px solid #00818A; margin-top: 100px; border-radius: 0.5rem; width: 70%; display: flex; justify-content: center;">
-            <div class="col-12" style="padding: 25px; width: auto;">
-                <h1 style="color: #00818A; margin-bottom: 30px;"> Datos del consumo </h1>
-                <h4 style="color: #00818A">Id Mesa: {{consumo.mesa}}</h4><br>
-                <h4 style="color: #00818A">Id Cliente: {{consumo.cliente}}</h4><br>
-                <h4 style="color: #00818A">Estado: {{#if consumo.estado}} abierto {{else}} cerrado {{/if}}</h4><br>
-                <h4 style="color: #00818A">Total: {{consumo.total}}</h4><br>
-                <h4 style="color: #00818A">Fecha de creación: {{consumo.fecha}}</h4><br>
+    <form id="list_productos" method="post" action="/index/{{consumo.mesa}}/{{consumo.cliente}}/list_productos"
+          style="margin: auto; padding: 50px; background-color: #e9ecef; border-radius: 0.5rem; text-align: center;">
+        <!--        <div>-->
+        <!--            <span>Ingrese cédula del cliente: </span>-->
+        <!--            <label for="cedula">-->
+        <!--                <input name="cedula" id="cedula" placeholder="Cédula" style="margin: 10px 10px 10px 0;">-->
+        <!--            </label>-->
+        <!--        </div>-->
+        <!--        <button type="submit"-->
+        <!--                style=" background: #00818A; color: white; border: 2px solid #00818A; border-radius: 0.2rem;"-->
+        <!--                name="btnSubmit">Buscar-->
+        <!--        </button>-->
+        <!--        <br>-->
+        <!--        <br>-->
+        <!--    </form>-->
+        <div style="display: flex; justify-content: center;">
+            <div class="row"
+                 style="border: 2px solid #00818A; margin-top: 100px; border-radius: 0.5rem; width: 70%; display: flex; justify-content: center;">
+                <div class="col-12" style="padding: 25px; width: auto;">
+                    <h1 style="color: #00818A; margin-bottom: 30px;"> Datos del consumo </h1>
+                    <h4 style="color: #00818A">Id Mesa: {{consumo.mesa}}</h4><br>
+                    <h4 style="color: #00818A">Id Cliente: {{consumo.cliente}}</h4><br>
+                    <h4 style="color: #00818A">Estado: {{#if consumo.estado}} abierto {{else}} cerrado {{/if}}</h4><br>
+                    <h4 style="color: #00818A">Total: {{consumo.total}}</h4><br>
+                    <h4 style="color: #00818A">Fecha de creación: {{consumo.fecha}}</h4><br>
+                    <button type="submit"
+                            style=" background: #00818A; color: white; border: 2px solid #00818A; border-radius: 0.2rem; margin: auto; display: flex;"
+                            name="btnSubmit">Agregar consumo
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+        <div style="display: flex; justify-content: center;">
+            <div class="row"
+                 style="border: 2px solid #00818A; margin-top: 100px; border-radius: 0.5rem; width: 70%; display: flex; justify-content: center;">
+                <div class="col-12" style="padding: 25px; width: auto;">
+                    <h1 style="color: #00818A; margin-bottom: 30px;"> Detalle </h1>
+                    <div class="row" style="border: 1px solid #00818A">
+                        <div class="col-6" style="border: 1px solid #00818A">
+                            <h4 style="color: #00818A">Producto</h4><br>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #00818A">
+                            <h4 style="color: #00818A">Cantidad</h4><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 <br>

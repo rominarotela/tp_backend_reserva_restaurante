@@ -7,6 +7,7 @@ exports.create = (req, res) => {
         mesa: req.body.mesa,
         cliente: req.body.cliente,
         estado: req.body.estado,
+        detalle: req.body.detalle,
     };
     consumo.fecha_creacion = new Date()
     console.log("----------->  log: Creando un nuevo consumo...", consumo)

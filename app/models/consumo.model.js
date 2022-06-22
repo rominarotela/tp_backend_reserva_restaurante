@@ -57,6 +57,7 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     const DetalleConsumo = sequelize.define("detalle", {
+        //id de producto
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true
@@ -66,7 +67,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         cantidad: {
             type: Sequelize.INTEGER
-        }
+        },
     });
 
     Consumo.hasMany(DetalleConsumo, {

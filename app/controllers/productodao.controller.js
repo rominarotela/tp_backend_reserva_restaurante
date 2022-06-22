@@ -44,7 +44,19 @@ exports.findAll = (req, res) => {
     Productos.findAll({ where: condition })
         .then(data => {
             console.log("----------->  log: Busqueda exitosa.")
-            res.send(data);
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+            let productos = [];
+            data.forEach(element => {
+                productos.push({
+                    nombre:  element.nombre,
+                    precio_venta: element.precio_venta,
+                    categoria: element.categoria,
+                    id: element.id
+                });
+            });
+            // res.send(data);
+            res.render('list_productos', {productos: productos});
         })
         .catch(err => {
             res.status(500).send({
