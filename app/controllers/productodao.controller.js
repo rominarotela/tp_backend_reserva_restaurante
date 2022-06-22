@@ -38,6 +38,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+    const cliente = req.params.cliente;
+    const mesa = req.params.mesa;
+    const restaurante = req.params.restaurante;
     const nombre = req.query.nombre;
     var condition = nombre ? { producto: { [Op.iLike]: `%${nombre}%` } } : null;
     console.log("----------->  log: Preparando lista de productos.")
@@ -52,11 +55,14 @@ exports.findAll = (req, res) => {
                     nombre:  element.nombre,
                     precio_venta: element.precio_venta,
                     categoria: element.categoria,
-                    id: element.id
+                    id: element.id,
+                    cliente: cliente,
+                    mesa:mesa,
+                    restaurante:restaurante
                 });
             });
             // res.send(data);
-            res.render('list_productos', {productos: productos});
+            res.render('list_productos', {productos: productos, cliente:cliente, mesa:mesa, restaurante:restaurante});
         })
         .catch(err => {
             res.status(500).send({

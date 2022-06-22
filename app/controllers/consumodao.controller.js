@@ -27,6 +27,33 @@ exports.create = (req, res) => {
         });
 };
 
+exports.createConsumo = (req, res) => {
+    const consumo = {
+        restaurante: req.params.restaurante,
+        mesa: req.params.mesa,
+        cliente: req.params.cliente,
+        estado: req.params.estado,
+        id_producto: req.params.id,
+        subtotal: req.params.precio_venta,
+        cantidad: req.params.cantidad,
+    };
+    console.log("consumo", consumo)
+    consumo.fecha_creacion = new Date()
+    console.log("----------->  log: Creando un nuevo consumo...", consumo)
+    // Guardamos a la base de datos
+    Consumos.create(consumo)
+        .then(data => {
+            res.send(data);
+            console.log("----------->  log: Nuevo consumo creado con éxito.")
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "----------->  log: Ha ocurrido un error al crear un consumo."
+            });
+        });
+};
+
 exports.findOne = (req, res) => {
     const id = req.params.id;
     console.log("----------->  log: Buscando consumo con id: ", id)

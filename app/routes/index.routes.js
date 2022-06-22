@@ -14,7 +14,8 @@ module.exports = app => {
     router.post("/:restaurante/:mesa/:cliente/create", reserva.createForm);
     // router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.addConsumoForm);
     router.post("/:restaurante/:mesa/:cliente/reserva/addConsumo", consumo.findConsumo);
-    router.post("/:mesa/:cliente/list_productos", producto.findAll);
+    router.get("/:restaurante/:mesa/:cliente/:estado/:id/:precio_venta/:cantidad/createConsumo/consumo", consumo.createConsumo);
+    router.post("/:restaurante/:mesa/:cliente/list_productos", producto.findAll);
     // router.post("/:nombre/:precio_venta/addConsumoCliente", detalle.findAll);
     app.use('/index', router);
 };
